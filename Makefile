@@ -12,3 +12,5 @@ test: $(TESTFILES) $(SRCFILES)
 
 clean:
 	rm -f ./test
+
+.PHONY: clean
