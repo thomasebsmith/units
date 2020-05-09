@@ -25,6 +25,21 @@ namespace Units {
       };
     }
 
+    template <typename OtherUnit>
+    constexpr Measurement<Num, typename Unit::Base> operator- (
+      const Measurement<Num, OtherUnit> &other
+    ) const {
+      static_assert(
+        std::is_same<typename Unit::Base, typename OtherUnit::Base>::value,
+        "Incompatible units: subtracted units must have the same base unit"
+      );
+      return {
+        unit.to_base(value) - other.unit.to_base(other.value),
+        typename Unit::Base{}
+      };
+    }
+
+
     Num value;
     const Unit &unit;
   };
