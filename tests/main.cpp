@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <units.hpp>
 
-using Units::Measurement;
+using namespace Units;
 
 void assert_close(double a, double b) {
   static const double epsilon = 1.0e-12;
@@ -25,12 +25,15 @@ void assert_close(Measurement<Num, Unit> a, Measurement<Num, Unit2> b) {
 }
 
 int main() {
-  Measurement length1 { 5.0, Units::meters{} };
-  Measurement length2 { 0.8, Units::kilo<Units::meters>{} };
-  assert_close(length1 + length2, Measurement { 805.0, Units::meters{} });
+  Measurement length1 { 5.0, meters{} };
+  Measurement length2 { 0.8, kilo<meters>{} };
+  assert_close(length1 + length2, Measurement { 805.0, meters{} });
   assert_close(length1 - length2, Measurement {
     -0.795,
-    Units::kilo<Units::meters>{}
+    kilo<meters>{}
   });
+  Measurement time1 { 0.33, milli<seconds>{} };
+  Measurement time2 { 50.0, micro<seconds>{} };
+  assert_close(time1 + time2, Measurement { 0.38, milli<seconds>{} });
   return 0;
 }
