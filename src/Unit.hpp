@@ -74,6 +74,19 @@ namespace Units {
       return "µ" + Unit::abbreviation();
     }
   };
+  template <typename Unit1, typename Unit2>
+  class Product {
+  public:
+    // TODO: Remove divisions
+    using Base = Product<typename Unit1::Base, typename Unit2::Base>;
+    template <typename Num>
+    static constexpr Num to_base(Num value) {
+      return Unit2::to_base(Unit1::to_base(value));
+    }
+    static std::string abbreviation() {
+      return Unit1::abbreviation() + "⋅" + Unit2::abbreviation();
+    }
+  };
 }
 
 #endif

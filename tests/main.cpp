@@ -35,5 +35,9 @@ int main() {
   Measurement time1 { 0.33, milli<seconds>{} };
   Measurement time2 { 50.0, micro<seconds>{} };
   assert_close(time1 + time2, Measurement { 0.38, milli<seconds>{} });
+  assert_close(length2 * time1, Measurement {
+    0.264,
+    Product<meters, seconds>{}
+  });
   return 0;
 }
