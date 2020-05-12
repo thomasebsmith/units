@@ -39,5 +39,6 @@ int main() {
     0.264,
     Product<meters, seconds>{}
   });
+  assert_close(length2 * time1, time1 * length2);
   return 0;
 }
