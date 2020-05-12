@@ -81,42 +81,6 @@ namespace Units {
     }
     static constexpr int _id = Base::_id;
   };
-  template <typename Unit1, typename Unit2,
-            bool sorted = Unit1::_id <= Unit2::_id
-  >
-  class Product;
-
-  template <typename Unit1, typename Unit2>
-  class Product<Unit1, Unit2, true> {
-  public:
-    // TODO: Remove divisions
-    // TODO: merges
-    using Base = Product<typename Unit1::Base, typename Unit2::Base>;
-    template <typename Num>
-    static constexpr Num to_base(Num value) {
-      return Unit2::to_base(Unit1::to_base(value));
-    }
-    static std::string abbreviation() {
-      return Unit1::abbreviation() + "⋅" + Unit2::abbreviation();
-    }
-    static constexpr int _id = -1; // TODO: remove
-  };
-
-  template <typename Unit1, typename Unit2>
-  class Product<Unit1, Unit2, false> {
-  public:
-    // TODO: Remove divisions
-    // TODO: merges
-    using Base = Product<typename Unit2::Base, typename Unit1::Base>;
-    template <typename Num>
-    static constexpr Num to_base(Num value) {
-      return Unit2::to_base(Unit1::to_base(value));
-    }
-    static std::string abbreviation() {
-      return Unit1::abbreviation() + "⋅" + Unit2::abbreviation();
-    }
-    static constexpr int _id = -1;
-  };
 }
 
 #endif

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <type_traits>
 #include <Unit.hpp>
+#include <Product.hpp>
 
 namespace Units {
   template <typename Num, typename Unit>
