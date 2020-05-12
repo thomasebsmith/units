@@ -90,7 +90,7 @@ namespace Units {
       return Unit2::to_base(Unit1::to_base(value));
     }
     static std::string abbreviation() {
-      return Base::Left::abbreviation() + "⋅" + Base::right::abbreviation();
+      return Base::Left::abbreviation() + "⋅" + Base::Right::abbreviation();
     }
   };
 
