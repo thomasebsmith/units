@@ -5,11 +5,31 @@
 #include <type_traits>
 
 namespace Units {
+  // Forward declaration to prevent infinite #include recursion.
+  template <typename Unit> class Inverse;
+
   template <typename Unit1, typename Unit2> class Product;
   template <typename Unit> struct _minID;
   template <typename Unit> struct _maxID;
   // Note: _merge should only be used on Bases.
   template <typename Unit1, typename Unit2> struct _merge;
+  // Note: _simplify should only be used on _merged types.
+  template <typename Unit> struct _simplify;
+
+  // Constexpr-compliant abs implementation.
+  constexpr int _abs(const int value) {
+    return value < 0 ? -value : value;
+  }
+
+  constexpr bool _sorted(const int leftID, const int rightID) {
+    if (_abs(leftID) > _abs(rightID)) {
+      return false;
+    }
+    if (leftID != -rightID) {
+      return true;
+    }
+    return leftID > rightID; // Inverses come second
+  }
 
   template <typename Unit1, typename Unit2>
   struct _minID<Product<Unit1, Unit2>> {
@@ -39,7 +59,7 @@ namespace Units {
   template <typename Unit1, typename Unit2, typename Unit3, typename Unit4>
   struct _merge<Product<Unit1, Unit2>, Product<Unit3, Unit4>> {
     using type = std::conditional_t<
-      _maxID<Unit2>::value <= _minID<Unit4>::value,
+      _sorted(_maxID<Unit2>::value, _minID<Unit4>::value),
       Product<typename _merge<Product<Unit1, Unit2>, Unit3>::type, Unit4>,
       Product<typename _merge<Unit1, Product<Unit3, Unit4>>::type, Unit2>
     >;
@@ -49,7 +69,7 @@ namespace Units {
   template <typename Unit1, typename Unit2, typename Unit3>
   struct _merge<Unit1, Product<Unit2, Unit3>> {
     using type = std::conditional_t<
-      _maxID<Unit1>::value <= _minID<Unit2>::value,
+      _sorted(_maxID<Unit1>::value, _minID<Unit2>::value),
       Product<Unit1, Product<Unit2, Unit3>>,
       Product<typename _merge<Unit1, Unit3>::type, Unit2>
     >;
@@ -59,7 +79,7 @@ namespace Units {
   template <typename Unit1, typename Unit2, typename Unit3>
   struct _merge<Product<Unit1, Unit2>, Unit3> {
     using type = std::conditional_t<
-      _maxID<Unit2>::value <= _minID<Unit3>::value,
+      _sorted(_maxID<Unit2>::value, _minID<Unit3>::value),
       Product<Product<Unit1, Unit2>, Unit3>,
       Product<typename _merge<Unit1, Unit3>::type, Unit2>
     >;
@@ -69,10 +89,37 @@ namespace Units {
   template <typename Unit1, typename Unit2>
   struct _merge {
     using type = std::conditional_t<
-      _maxID<Unit1>::value <= _minID<Unit2>::value,
+      _sorted(_maxID<Unit1>::value, _minID<Unit2>::value),
       Product<Unit1, Unit2>,
       Product<Unit2, Unit1>
     >;
+  };
+
+  template <typename Unit1, typename Unit2>
+  struct _simplify<Product<Product<Unit1, Unit2>, Inverse<Unit2>>> {
+    using type = typename _simplify<Unit1>::type;
+  };
+
+  template <typename Unit1, typename Unit2>
+  struct _simplify<Product<Unit1, Unit2>> {
+    using type = Product<typename _simplify<Unit1>::type, Unit2>;
+  };
+
+  /* TODO: type should be Unitless
+  template <typename Unit>
+  struct _simplify<Product<Unit, Inverse<Unit>>> {
+    using type = Unitless;
+  };
+
+  template <typename Unit>
+  struct _simplify<Product<Unitless, Unit>> {
+    using type = Unit;
+  };
+  */
+
+  template <typename Unit>
+  struct _simplify {
+    using type = Unit;
   };
 
   template <typename Unit1, typename Unit2>

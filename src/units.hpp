@@ -3,6 +3,7 @@
 
 #include <Unit.hpp>
 #include <Product.hpp>
+#include <Quotient.hpp>
 #include <Measurement.hpp>
 
 #endif
