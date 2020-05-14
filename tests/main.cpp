@@ -40,5 +40,9 @@ int main() {
     Product<meters, seconds>{}
   });
   assert_close(length2 * time1, time1 * length2);
+  assert_close(length1 / time1, Measurement {
+    5.0 / 0.00033,
+    Quotient<meters, seconds>{}
+  });
   return 0;
 }

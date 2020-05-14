@@ -81,6 +81,19 @@ namespace Units {
     }
     static constexpr int _id = Base::_id;
   };
+
+  class Unitless {
+  public:
+    using Base = Unitless;
+    template <typename Num>
+    static constexpr Num to_base(Num value) {
+      return value;
+    }
+    static std::string abbreviation() {
+      return "";
+    }
+    static constexpr int _id = 0;
+  };
 }
 
 #endif

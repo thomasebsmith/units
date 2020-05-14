@@ -5,6 +5,7 @@
 #include <type_traits>
 #include <Unit.hpp>
 #include <Product.hpp>
+#include <Quotient.hpp>
 
 namespace Units {
   template <typename Num, typename Unit>
@@ -49,6 +50,17 @@ namespace Units {
         Product<typename Unit::Base, typename OtherUnit::Base>{}
       };
     }
+    template <typename OtherUnit>
+    constexpr Measurement<
+      Num,
+      Quotient<typename Unit::Base, typename OtherUnit::Base>
+    > operator/ (const Measurement<Num, OtherUnit> other) {
+      return {
+        unit.to_base(value) / other.unit.to_base(other.value),
+        Quotient<typename Unit::Base, typename OtherUnit::Base>{}
+      };
+    }
+
 
     Num value;
     const Unit &unit;

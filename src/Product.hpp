@@ -5,8 +5,9 @@
 #include <type_traits>
 
 namespace Units {
-  // Forward declaration to prevent infinite #include recursion.
+  // Forward declarations to prevent infinite #include recursion.
   template <typename Unit> class Inverse;
+  class Unitless;
 
   template <typename Unit1, typename Unit2> class Product;
   template <typename Unit> struct _minID;
@@ -105,7 +106,6 @@ namespace Units {
     using type = Product<typename _simplify<Unit1>::type, Unit2>;
   };
 
-  /* TODO: type should be Unitless
   template <typename Unit>
   struct _simplify<Product<Unit, Inverse<Unit>>> {
     using type = Unitless;
@@ -115,7 +115,6 @@ namespace Units {
   struct _simplify<Product<Unitless, Unit>> {
     using type = Unit;
   };
-  */
 
   template <typename Unit>
   struct _simplify {
@@ -125,10 +124,10 @@ namespace Units {
   template <typename Unit1, typename Unit2>
   class Product {
   public:
-    using Base = typename _merge<
+    using Base = typename _simplify<typename _merge<
       typename Unit1::Base,
       typename Unit2::Base
-    >::type;
+    >::type>::type;
     using Left = Unit1;
     using Right = Unit2;
 
