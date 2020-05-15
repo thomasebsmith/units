@@ -6,13 +6,15 @@
 namespace Units {
   template <typename Unit> class Inverse;
 
-  template <typename Num, typename Unit>
-  constexpr Num _inverse_to_base(Num value) {
-    if constexpr (value == 0) {
-      return 0;
+  namespace __units_private__ {
+    template <typename Num, typename Unit>
+    constexpr Num inverse_to_base(Num value) {
+      if constexpr (value == 0) {
+        return 0;
+      }
+      int ratio = Unit::to_base(value) / value;
+      return value / ratio;
     }
-    int ratio = Unit::to_base(value) / value;
-    return value / ratio;
   }
 
   template <typename Unit1, typename Unit2>
@@ -22,7 +24,10 @@ namespace Units {
 
     template <typename Num>
     static constexpr Num to_base(Num value) {
-      return _inverse_to_base<Num, Product<Unit1, Unit2>>(value);
+      return __units_private__::inverse_to_base<
+        Num,
+        Product<Unit1, Unit2>
+      >(value);
     }
     static std::string abbreviation() {
       return "(" + Product<Unit1, Unit2>::abbreviation() + ")⁻¹";
@@ -36,7 +41,7 @@ namespace Units {
 
     template <typename Num>
     static constexpr Num to_base(Num value) {
-      return _inverse_to_base<Num, Unit>(value);
+      return __units_private__::inverse_to_base<Num, Unit>(value);
     }
     static std::string abbreviation() {
       return Unit::abbreviation();
