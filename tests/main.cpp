@@ -44,5 +44,6 @@ int main() {
     5.0 / 0.00033,
     Quotient<meters, seconds>{}
   });
+  assert_close(length1, 5.0_m);
   return 0;
 }
