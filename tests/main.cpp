@@ -45,5 +45,10 @@ int main() {
     Quotient<meters, seconds>{}
   });
   assert_close(length1, 5.0_m);
+
+  assert_close(5003.0_m, 5.003_km);
+
+  auto length3 = 0.003801723293455219_km;
+  assert_close(0.0303_ks * 90.0_mm, (length3 * length3) * 1000.0_ms / 5.3_m);
   return 0;
 }
