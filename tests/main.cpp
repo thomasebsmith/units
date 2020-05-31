@@ -50,5 +50,7 @@ int main() {
 
   auto length3 = 0.003801723293455219_km;
   assert_close(0.0303_ks * 90.0_mm, (length3 * length3) * 1000.0_ms / 5.3_m);
+
+  assert_close(503.0_µm * 2.0_Ms, 251.5_µs * 4.0_Mm);
   return 0;
 }
