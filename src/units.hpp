@@ -6,5 +6,6 @@
 #include <Quotient.hpp>
 #include <Measurement.hpp>
 #include <Operators.hpp>
+#include <DerivedUnits.hpp>
 
 #endif

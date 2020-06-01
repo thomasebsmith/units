@@ -3,6 +3,7 @@
 
 #include <Unit.hpp>
 #include <Measurement.hpp>
+#include <DerivedUnits.hpp>
 
 namespace Units {
   // Distance units:
@@ -52,6 +53,22 @@ namespace Units {
   }
   Measurement<double, micro<grams>> operator "" _µg(long double value) {
     return Measurement { static_cast<double>(value), micro<grams>{} };
+  }
+  // Force units:
+  Measurement<double, Newtons> operator "" _N(long double value) {
+    return Measurement { static_cast<double>(value), Newtons{} };
+  }
+  Measurement<double, mega<Newtons>> operator "" _MN(long double value) {
+    return Measurement { static_cast<double>(value), mega<Newtons>{} };
+  }
+  Measurement<double, kilo<Newtons>> operator "" _kN(long double value) {
+    return Measurement { static_cast<double>(value), kilo<Newtons>{} };
+  }
+  Measurement<double, milli<Newtons>> operator "" _mN(long double value) {
+    return Measurement { static_cast<double>(value), milli<Newtons>{} };
+  }
+  Measurement<double, micro<Newtons>> operator "" _µN(long double value) {
+    return Measurement { static_cast<double>(value), micro<Newtons>{} };
   }
 }
 

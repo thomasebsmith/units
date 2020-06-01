@@ -20,12 +20,12 @@ namespace Units {
     template <typename Unit> struct simplify;
 
     // Constexpr-compliant abs implementation.
-    constexpr int _abs(const int value) {
+    constexpr int abs(const int value) {
       return value < 0 ? -value : value;
     }
 
     constexpr bool sorted(const int leftID, const int rightID) {
-      if (_abs(leftID) > _abs(rightID)) {
+      if (abs(leftID) > abs(rightID)) {
         return false;
       }
       if (leftID != -rightID) {
@@ -72,8 +72,8 @@ namespace Units {
     template <typename Unit1, typename Unit2, typename Unit3>
     struct merge<Unit1, Product<Unit2, Unit3>> {
       using type = std::conditional_t<
-        sorted(maxID<Unit1>::value, minID<Unit2>::value),
-        Product<Unit1, Product<Unit2, Unit3>>,
+        sorted(maxID<Unit1>::value, minID<Unit3>::value),
+        Product<typename merge<Unit1, Unit2>::type, Unit3>,
         Product<typename merge<Unit1, Unit3>::type, Unit2>
       >;
     };
