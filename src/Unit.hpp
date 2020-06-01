@@ -5,6 +5,10 @@
 #include <type_traits>
 
 namespace Units {
+  // Forward declaration of kilo<Unit> for grams (base unit is kilo<grams>):
+  template <typename Unit>
+  class kilo;
+
   class meters {
   public:
     using Base = meters;
@@ -29,13 +33,26 @@ namespace Units {
     }
     static constexpr int _id = 2;
   };
+  class grams {
+  public:
+    using Base = kilo<grams>;
+    template <typename Num>
+    static constexpr Num to_base(Num value) {
+      return value / 1e3;
+    }
+    static std::string abbreviation() {
+      return "g";
+    }
+    static constexpr int _id = 3;
+  };
+
   template <typename Unit>
   class kilo {
   public:
     using Base = typename Unit::Base;
     template <typename Num>
     static constexpr Num to_base(Num value) {
-      return value * 1e3;
+      return Unit::to_base(value) * 1e3;
     }
     static std::string abbreviation() {
       return "k" + Unit::abbreviation();
@@ -48,7 +65,7 @@ namespace Units {
     using Base = typename Unit::Base;
     template <typename Num>
     static constexpr Num to_base(Num value) {
-      return value * 1e6;
+      return Unit::to_base(value) * 1e6;
     }
     static std::string abbreviation() {
       return "M" + Unit::abbreviation();
@@ -61,7 +78,7 @@ namespace Units {
     using Base = typename Unit::Base;
     template <typename Num>
     static constexpr Num to_base(Num value) {
-      return value / 1e3;
+      return Unit::to_base(value) / 1e3;
     }
     static std::string abbreviation() {
       return "m" + Unit::abbreviation();
@@ -74,7 +91,7 @@ namespace Units {
     using Base = typename Unit::Base;
     template <typename Num>
     static constexpr Num to_base(Num value) {
-      return value / 1e6;
+      return Unit::to_base(value) / 1e6;
     }
     static std::string abbreviation() {
       return "µ" + Unit::abbreviation();

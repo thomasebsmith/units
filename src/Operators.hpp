@@ -37,6 +37,22 @@ namespace Units {
   Measurement<double, micro<seconds>> operator "" _µs(long double value) {
     return Measurement { static_cast<double>(value), micro<seconds>{} };
   }
+  // Mass units:
+  Measurement<double, grams> operator "" _g(long double value) {
+    return Measurement { static_cast<double>(value), grams{} };
+  }
+  Measurement<double, mega<grams>> operator "" _Mg(long double value) {
+    return Measurement { static_cast<double>(value), mega<grams>{} };
+  }
+  Measurement<double, kilo<grams>> operator "" _kg(long double value) {
+    return Measurement { static_cast<double>(value), kilo<grams>{} };
+  }
+  Measurement<double, milli<grams>> operator "" _mg(long double value) {
+    return Measurement { static_cast<double>(value), milli<grams>{} };
+  }
+  Measurement<double, micro<grams>> operator "" _µg(long double value) {
+    return Measurement { static_cast<double>(value), micro<grams>{} };
+  }
 }
 
 #endif

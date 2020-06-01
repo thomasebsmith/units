@@ -52,5 +52,7 @@ int main() {
   assert_close(0.0303_ks * 90.0_mm, (length3 * length3) * 1000.0_ms / 5.3_m);
 
   assert_close(503.0_µm * 2.0_Ms, 251.5_µs * 4.0_Mm);
+
+  assert_close(3.5389_kg, 3538.9_g);
   return 0;
 }
