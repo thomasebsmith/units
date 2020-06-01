@@ -6,7 +6,7 @@
 #include <Quotient.hpp>
 
 namespace Units {
-  using Newtons = typename Product<
+  using newtons = typename Product<
     kilo<grams>,
     Quotient<
       Quotient<meters, seconds>,

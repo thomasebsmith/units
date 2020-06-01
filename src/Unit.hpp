@@ -45,6 +45,42 @@ namespace Units {
     }
     static constexpr int _id = 3;
   };
+  class amperes {
+  public:
+    using Base = amperes;
+    template <typename Num>
+    static constexpr Num to_base(Num value) {
+      return value;
+    }
+    static std::string abbreviation() {
+      return "A";
+    }
+    static constexpr int _id = 4;
+  };
+  class kelvins {
+  public:
+    using Base = kelvins;
+    template <typename Num>
+    static constexpr Num to_base(Num value) {
+      return value;
+    }
+    static std::string abbreviation() {
+      return "K";
+    }
+    static constexpr int _id = 5;
+  };
+  class candelas {
+  public: 
+    using Base = candelas;
+    template <typename Num>
+    static constexpr Num to_base(Num value) {
+      return value;
+    }
+    static std::string abbreviation() {
+      return "cd";
+    }
+    static constexpr int _id = 6;
+  };
 
   template <typename Unit>
   class kilo {
