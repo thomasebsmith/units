@@ -13,6 +13,14 @@ namespace Units {
       seconds
     >
   >::Base;
+
+  using pascals = typename Quotient<
+    kilo<grams>,
+    Product<
+      Product<meters, seconds>,
+      seconds
+    >
+  >::Base;
 }
 
 #endif

@@ -118,6 +118,22 @@ namespace Units {
   Measurement<double, micro<newtons>> operator "" _µN(long double value) {
     return Measurement { static_cast<double>(value), micro<newtons>{} };
   }
+  // Pressure units:
+  Measurement<double, pascals> operator "" _Pa(long double value) {
+    return Measurement { static_cast<double>(value), pascals{} };
+  }
+  Measurement<double, mega<pascals>> operator "" _MPa(long double value) {
+    return Measurement { static_cast<double>(value), mega<pascals>{} };
+  }
+  Measurement<double, kilo<pascals>> operator "" _kPa(long double value) {
+    return Measurement { static_cast<double>(value), kilo<pascals>{} };
+  }
+  Measurement<double, milli<pascals>> operator "" _mPa(long double value) {
+    return Measurement { static_cast<double>(value), milli<pascals>{} };
+  }
+  Measurement<double, micro<pascals>> operator "" _µPa(long double value) {
+    return Measurement { static_cast<double>(value), micro<pascals>{} };
+  }
 }
 
 #endif

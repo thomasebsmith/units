@@ -40,5 +40,7 @@ int main() {
   test(close(0.053_MA, 53.0_kA));
   test(close(273.15_K, 273150.0_mK));
   test(close(8080.8_µcd, 8.0808_mcd));
+
+  test(close(3.14159_Pa, 18.84954_N / 3.0_m / 2.0_m));
   return 0;
 }
