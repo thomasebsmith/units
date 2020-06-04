@@ -4,6 +4,7 @@
 #include <Unit.hpp>
 #include <Product.hpp>
 #include <Quotient.hpp>
+#include <Power.hpp>
 #include <Measurement.hpp>
 #include <Operators.hpp>
 #include <DerivedUnits.hpp>

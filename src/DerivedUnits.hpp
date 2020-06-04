@@ -3,22 +3,21 @@
 
 #include <Unit.hpp>
 #include <Product.hpp>
-#include <Quotient.hpp>
+#include <Power.hpp>
 
 namespace Units {
-  using newtons = typename Product<
+  using newtons = Product<
     kilo<grams>,
-    Quotient<
-      Quotient<meters, seconds>,
-      seconds
+    Product<meters,
+      Power<seconds, -2>
     >
-  >::Base;
+  >;
 
-  using pascals = typename Quotient<
+  using pascals = Product<
     kilo<grams>,
     Product<
-      Product<meters, seconds>,
-      seconds
+      Power<meters, -1>,
+      Power<seconds, -2>
     >
   >::Base;
 }
