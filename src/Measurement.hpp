@@ -6,8 +6,19 @@
 #include <Unit.hpp>
 #include <Product.hpp>
 #include <Quotient.hpp>
+#include <Power.hpp>
 
 namespace Units {
+  namespace __units_private__ {
+    template <typename Num>
+    constexpr Num power(Num value, int exponent) {
+      return value == 0 ? 0 :
+          exponent == 0 ? 1 :
+           exponent < 0 ? power(value, exponent + 1) / value :
+                          power(value, exponent - 1) * value;
+    }
+  }
+
   template <typename Num, typename Unit>
   struct Measurement {
     Measurement(Num value_in, const Unit &unit_in):
@@ -44,7 +55,7 @@ namespace Units {
     constexpr Measurement<
       Num,
       Product<typename Unit::Base, typename OtherUnit::Base>
-    > operator* (const Measurement<Num, OtherUnit> other) {
+    > operator* (const Measurement<Num, OtherUnit> other) const {
       return {
         unit.to_base(value) * other.unit.to_base(other.value),
         Product<typename Unit::Base, typename OtherUnit::Base>{}
@@ -54,15 +65,22 @@ namespace Units {
     constexpr Measurement<
       Num,
       Quotient<typename Unit::Base, typename OtherUnit::Base>
-    > operator/ (const Measurement<Num, OtherUnit> other) {
+    > operator/ (const Measurement<Num, OtherUnit> other) const {
       return {
         unit.to_base(value) / other.unit.to_base(other.value),
         Quotient<typename Unit::Base, typename OtherUnit::Base>{}
       };
     }
+    template <int exponent>
+    constexpr Measurement<Num, Power<Unit, exponent>> pow() const {
+      return {
+        __units_private__::power(value, exponent),
+        Power<Unit, exponent>{}
+      };
+    }
 
 
-    Num value;
+    const Num value;
     const Unit &unit;
   };
 

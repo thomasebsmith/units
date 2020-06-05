@@ -34,7 +34,7 @@ int main() {
 
   test(close(3.5389_kg, 3538.9_g));
 
-  test(close(1.0_N, 1.0_m * 1000.0_g / 1.0_s / 1.0_s));
+  test(close(1.0_N, 1.0_m * 1000.0_g / (1.0_s).pow<2>()));
   test(!close(1.0_N, 1.1_m * 0.9_kg / 1.0_s / 1.0_s));
 
   test(close(0.053_MA, 53.0_kA));
@@ -42,5 +42,9 @@ int main() {
   test(close(8080.8_µcd, 8.0808_mcd));
 
   test(close(3.14159_Pa, 18.84954_N / 3.0_m / 2.0_m));
+
+  auto sqrt_333_m = 1.824828759089466_m;
+  test(close(3.33_m * 1.0_m / 1.0_s, (sqrt_333_m / 1.0_s).pow<2>() * 1.0_s));
+
   return 0;
 }
