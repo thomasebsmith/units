@@ -134,6 +134,38 @@ namespace Units {
   Measurement<double, micro<pascals>> operator "" _µPa(long double value) {
     return Measurement { static_cast<double>(value), micro<pascals>{} };
   }
+  // Energy units:
+  Measurement<double, joules> operator "" _J(long double value) {
+    return Measurement { static_cast<double>(value), joules{} };
+  }
+  Measurement<double, mega<joules>> operator "" _MJ(long double value) {
+    return Measurement { static_cast<double>(value), mega<joules>{} };
+  }
+  Measurement<double, kilo<joules>> operator "" _kJ(long double value) {
+    return Measurement { static_cast<double>(value), kilo<joules>{} };
+  }
+  Measurement<double, milli<joules>> operator "" _mJ(long double value) {
+    return Measurement { static_cast<double>(value), milli<joules>{} };
+  }
+  Measurement<double, micro<joules>> operator "" _µJ(long double value) {
+    return Measurement { static_cast<double>(value), micro<joules>{} };
+  }
+  // Power units:
+  Measurement<double, watts> operator "" _W(long double value) {
+    return Measurement { static_cast<double>(value), watts{} };
+  }
+  Measurement<double, mega<watts>> operator "" _MW(long double value) {
+    return Measurement { static_cast<double>(value), mega<watts>{} };
+  }
+  Measurement<double, kilo<watts>> operator "" _kW(long double value) {
+    return Measurement { static_cast<double>(value), kilo<watts>{} };
+  }
+  Measurement<double, milli<watts>> operator "" _mW(long double value) {
+    return Measurement { static_cast<double>(value), milli<watts>{} };
+  }
+  Measurement<double, micro<watts>> operator "" _µW(long double value) {
+    return Measurement { static_cast<double>(value), micro<watts>{} };
+  }
 }
 
 #endif

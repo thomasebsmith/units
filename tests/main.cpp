@@ -46,5 +46,8 @@ int main() {
   auto sqrt_333_m = 1.824828759089466_m;
   test(close(3.33_m * 1.0_m / 1.0_s, (sqrt_333_m / 1.0_s).pow<2>() * 1.0_s));
 
+  test(close(8.1_kg * 4.4_m * 2.2_m / 3.14_s, 2.0_J * 12.485350318471338_s));
+  test(close(5.666_J / 2.0_s, 2.833_W));
+
   return 0;
 }

@@ -6,20 +6,24 @@
 #include <Power.hpp>
 
 namespace Units {
-  using newtons = Product<
+  using newtons = typename Product<
     kilo<grams>,
     Product<meters,
       Power<seconds, -2>
     >
-  >;
+  >::Base;
 
-  using pascals = Product<
+  using pascals = typename Product<
     kilo<grams>,
     Product<
       Power<meters, -1>,
       Power<seconds, -2>
     >
   >::Base;
+
+  using joules = typename Product<meters, newtons>::Base;
+
+  using watts = typename Quotient<joules, seconds>::Base;
 }
 
 #endif
