@@ -55,52 +55,52 @@ namespace Units {
     return Measurement { static_cast<double>(value), micro<grams>{} };
   }
   // Electric current units:
-  Measurement<double, grams> operator "" _A(long double value) {
-    return Measurement { static_cast<double>(value), grams{} };
+  Measurement<double, amperes> operator "" _A(long double value) {
+    return Measurement { static_cast<double>(value), amperes{} };
   }
-  Measurement<double, mega<grams>> operator "" _MA(long double value) {
-    return Measurement { static_cast<double>(value), mega<grams>{} };
+  Measurement<double, mega<amperes>> operator "" _MA(long double value) {
+    return Measurement { static_cast<double>(value), mega<amperes>{} };
   }
-  Measurement<double, kilo<grams>> operator "" _kA(long double value) {
-    return Measurement { static_cast<double>(value), kilo<grams>{} };
+  Measurement<double, kilo<amperes>> operator "" _kA(long double value) {
+    return Measurement { static_cast<double>(value), kilo<amperes>{} };
   }
-  Measurement<double, milli<grams>> operator "" _mA(long double value) {
-    return Measurement { static_cast<double>(value), milli<grams>{} };
+  Measurement<double, milli<amperes>> operator "" _mA(long double value) {
+    return Measurement { static_cast<double>(value), milli<amperes>{} };
   }
-  Measurement<double, micro<grams>> operator "" _µA(long double value) {
-    return Measurement { static_cast<double>(value), micro<grams>{} };
+  Measurement<double, micro<amperes>> operator "" _µA(long double value) {
+    return Measurement { static_cast<double>(value), micro<amperes>{} };
   }
   // Temperature units:
-  Measurement<double, grams> operator "" _K(long double value) {
-    return Measurement { static_cast<double>(value), grams{} };
+  Measurement<double, kelvins> operator "" _K(long double value) {
+    return Measurement { static_cast<double>(value), kelvins{} };
   }
-  Measurement<double, mega<grams>> operator "" _MK(long double value) {
-    return Measurement { static_cast<double>(value), mega<grams>{} };
+  Measurement<double, mega<kelvins>> operator "" _MK(long double value) {
+    return Measurement { static_cast<double>(value), mega<kelvins>{} };
   }
-  Measurement<double, kilo<grams>> operator "" _kK(long double value) {
-    return Measurement { static_cast<double>(value), kilo<grams>{} };
+  Measurement<double, kilo<kelvins>> operator "" _kK(long double value) {
+    return Measurement { static_cast<double>(value), kilo<kelvins>{} };
   }
-  Measurement<double, milli<grams>> operator "" _mK(long double value) {
-    return Measurement { static_cast<double>(value), milli<grams>{} };
+  Measurement<double, milli<kelvins>> operator "" _mK(long double value) {
+    return Measurement { static_cast<double>(value), milli<kelvins>{} };
   }
-  Measurement<double, micro<grams>> operator "" _µK(long double value) {
-    return Measurement { static_cast<double>(value), micro<grams>{} };
+  Measurement<double, micro<kelvins>> operator "" _µK(long double value) {
+    return Measurement { static_cast<double>(value), micro<kelvins>{} };
   }
   // Luminous intensity units:
-  Measurement<double, grams> operator "" _cd(long double value) {
-    return Measurement { static_cast<double>(value), grams{} };
+  Measurement<double, candelas> operator "" _cd(long double value) {
+    return Measurement { static_cast<double>(value), candelas{} };
   }
-  Measurement<double, mega<grams>> operator "" _Mcd(long double value) {
-    return Measurement { static_cast<double>(value), mega<grams>{} };
+  Measurement<double, mega<candelas>> operator "" _Mcd(long double value) {
+    return Measurement { static_cast<double>(value), mega<candelas>{} };
   }
-  Measurement<double, kilo<grams>> operator "" _kcd(long double value) {
-    return Measurement { static_cast<double>(value), kilo<grams>{} };
+  Measurement<double, kilo<candelas>> operator "" _kcd(long double value) {
+    return Measurement { static_cast<double>(value), kilo<candelas>{} };
   }
-  Measurement<double, milli<grams>> operator "" _mcd(long double value) {
-    return Measurement { static_cast<double>(value), milli<grams>{} };
+  Measurement<double, milli<candelas>> operator "" _mcd(long double value) {
+    return Measurement { static_cast<double>(value), milli<candelas>{} };
   }
-  Measurement<double, micro<grams>> operator "" _µcd(long double value) {
-    return Measurement { static_cast<double>(value), micro<grams>{} };
+  Measurement<double, micro<candelas>> operator "" _µcd(long double value) {
+    return Measurement { static_cast<double>(value), micro<candelas>{} };
   }
   // Force units:
   Measurement<double, newtons> operator "" _N(long double value) {
@@ -165,6 +165,22 @@ namespace Units {
   }
   Measurement<double, micro<watts>> operator "" _µW(long double value) {
     return Measurement { static_cast<double>(value), micro<watts>{} };
+  }
+  // Electric charge units:
+  Measurement<double, coulombs> operator "" _C(long double value) {
+    return Measurement { static_cast<double>(value), coulombs{} };
+  }
+  Measurement<double, mega<coulombs>> operator "" _MC(long double value) {
+    return Measurement { static_cast<double>(value), mega<coulombs>{} };
+  }
+  Measurement<double, kilo<coulombs>> operator "" _kC(long double value) {
+    return Measurement { static_cast<double>(value), kilo<coulombs>{} };
+  }
+  Measurement<double, milli<coulombs>> operator "" _mC(long double value) {
+    return Measurement { static_cast<double>(value), milli<coulombs>{} };
+  }
+  Measurement<double, micro<coulombs>> operator "" _µC(long double value) {
+    return Measurement { static_cast<double>(value), micro<coulombs>{} };
   }
 }
 

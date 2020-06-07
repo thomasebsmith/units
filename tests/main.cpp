@@ -49,5 +49,7 @@ int main() {
   test(close(8.1_kg * 4.4_m * 2.2_m / 3.14_s, 2.0_J * 12.485350318471338_s));
   test(close(5.666_J / 2.0_s, 2.833_W));
 
+  test(close(80.0_mC, 0.0004_kA * 0.2_s));
+
   return 0;
 }

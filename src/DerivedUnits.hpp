@@ -24,6 +24,8 @@ namespace Units {
   using joules = typename Product<meters, newtons>::Base;
 
   using watts = typename Quotient<joules, seconds>::Base;
+
+  using coulombs = typename Product<seconds, amperes>::Base;
 }
 
 #endif
