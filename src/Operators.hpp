@@ -182,6 +182,22 @@ namespace Units {
   Measurement<double, micro<coulombs>> operator "" _µC(long double value) {
     return Measurement { static_cast<double>(value), micro<coulombs>{} };
   }
+  // Voltage units:
+  Measurement<double, volts> operator "" _V(long double value) {
+    return Measurement { static_cast<double>(value), volts{} };
+  }
+  Measurement<double, mega<volts>> operator "" _MV(long double value) {
+    return Measurement { static_cast<double>(value), mega<volts>{} };
+  }
+  Measurement<double, kilo<volts>> operator "" _kV(long double value) {
+    return Measurement { static_cast<double>(value), kilo<volts>{} };
+  }
+  Measurement<double, milli<volts>> operator "" _mV(long double value) {
+    return Measurement { static_cast<double>(value), milli<volts>{} };
+  }
+  Measurement<double, micro<volts>> operator "" _µV(long double value) {
+    return Measurement { static_cast<double>(value), micro<volts>{} };
+  }
 }
 
 #endif

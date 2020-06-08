@@ -51,5 +51,7 @@ int main() {
 
   test(close(80.0_mC, 0.0004_kA * 0.2_s));
 
+  test(close(0.03_µJ / 0.003_mC, 0.00001_kV));
+
   return 0;
 }

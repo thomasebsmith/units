@@ -26,14 +26,18 @@ public:
     }
   }
 
-  Assertion operator!() {
+  Assertion operator!() const {
     return { !value, message, !negated };
   }
 
+  bool holds() const {
+    return value;
+  }
+
 private:
-  bool value;
-  std::string message;
-  bool negated;
+  const bool value;
+  const std::string message;
+  const bool negated;
 };
 
 Assertion close(double a, double b) {
