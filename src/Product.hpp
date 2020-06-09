@@ -16,8 +16,12 @@ namespace Units {
     template <typename Unit> struct maxID;
     // Note: merge should only be used on Bases.
     template <typename Unit1, typename Unit2> struct merge;
+    template <typename Unit> struct is_simple;
     // Note: simplify should only be used on merged types.
     template <typename Unit> struct simplify;
+
+    template <bool condition, typename T, typename U>
+    using eval_if = typename std::conditional_t<condition, T, U>::type;
 
     // Constexpr-compliant abs implementation.
     constexpr int abs(const int value) {
@@ -34,9 +38,17 @@ namespace Units {
       return leftID > rightID; // Inverses come second
     }
 
+    constexpr int absMin(const int left, const int right) {
+      return sorted(left, right) ? left : right;
+    }
+
+    constexpr int absMax(const int left, const int right) {
+      return sorted(left, right) ? right : left;
+    }
+
     template <typename Unit1, typename Unit2>
     struct minID<Product<Unit1, Unit2>> {
-      static constexpr int value = std::min(
+      static constexpr int value = absMin(
         minID<Unit1>::value,
         minID<Unit2>::value
       );
@@ -48,7 +60,7 @@ namespace Units {
 
     template <typename Unit1, typename Unit2>
     struct maxID<Product<Unit1, Unit2>> {
-      static constexpr int value = std::max(
+      static constexpr int value = absMax(
         maxID<Unit1>::value,
         maxID<Unit2>::value
       );
@@ -57,6 +69,27 @@ namespace Units {
     struct maxID {
       static constexpr int value = Unit::_id;
     };
+
+    template <typename Unit1, typename Unit2>
+    struct is_simple<Product<Product<Unit1, Unit2>, Inverse<Unit2>>> {
+      static constexpr bool value = false;
+    };
+
+    template <typename Unit>
+    struct is_simple<Product<Unit, Inverse<Unit>>> {
+      static constexpr bool value = false;
+    };
+
+    template <typename Unit>
+    struct is_simple<Product<Unitless, Unit>> {
+      static constexpr bool value = false;
+    };
+
+    template <typename Unit>
+    struct is_simple {
+      static constexpr bool value = true;
+    };
+
 
     // Worst case: both units are products.
     template <typename Unit1, typename Unit2, typename Unit3, typename Unit4>
@@ -113,14 +146,19 @@ namespace Units {
       using type = Unit;
     };
 
-    template <typename Unit>
-    struct simplify<Product<Unit, Unitless>> {
-      using type = Unit;
+    template <typename Unit1, typename Unit2>
+    struct delayed_product {
+      using type = Product<Unit1, Unit2>;
     };
 
     template <typename Unit1, typename Unit2>
     struct simplify<Product<Unit1, Unit2>> {
-      using type = Product<typename simplify<Unit1>::type, Unit2>;
+      using _type = typename simplify<Unit1>::type;
+      using type = eval_if<
+        is_simple<Product<_type, Unit2>>::value,
+        delayed_product<_type, Unit2>,
+        simplify<Product<_type, Unit2>>
+      >;
     };
 
     template <typename Unit>

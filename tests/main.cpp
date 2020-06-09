@@ -53,5 +53,10 @@ int main() {
 
   test(close(0.03_µJ / 0.003_mC, 0.00001_kV));
 
+  test(close(
+    (3.0_ms).pow<4>() * (2.5_kA).pow<2>(),
+    (25.0_m).pow<2>() * (5.0_kg) * (0.162_µF))
+  );
+
   return 0;
 }

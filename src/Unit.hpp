@@ -93,7 +93,7 @@ namespace Units {
     static std::string abbreviation() {
       return "k" + Unit::abbreviation();
     }
-    static constexpr int _id = Base::_id;
+    static constexpr int _id = Unit::_id;
   };
   template <typename Unit>
   class mega {
