@@ -28,6 +28,9 @@ namespace Units {
   using coulombs = typename Product<seconds, amperes>::Base;
 
   using volts = typename Quotient<watts, amperes>::Base;
+
+  using farads = typename Quotient<coulombs, volts>::Base;
+
 }
 
 #endif

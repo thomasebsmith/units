@@ -74,7 +74,7 @@ namespace Units {
       using type = std::conditional_t<
         sorted(maxID<Unit1>::value, minID<Unit3>::value),
         Product<typename merge<Unit1, Unit2>::type, Unit3>,
-        Product<typename merge<Unit1, Unit3>::type, Unit2>
+        Product<Product<Unit2, Unit3>, Unit1>
       >;
     };
 
@@ -103,11 +103,6 @@ namespace Units {
       using type = typename simplify<Unit1>::type;
     };
 
-    template <typename Unit1, typename Unit2>
-    struct simplify<Product<Unit1, Unit2>> {
-      using type = Product<typename simplify<Unit1>::type, Unit2>;
-    };
-
     template <typename Unit>
     struct simplify<Product<Unit, Inverse<Unit>>> {
       using type = Unitless;
@@ -116,6 +111,16 @@ namespace Units {
     template <typename Unit>
     struct simplify<Product<Unitless, Unit>> {
       using type = Unit;
+    };
+
+    template <typename Unit>
+    struct simplify<Product<Unit, Unitless>> {
+      using type = Unit;
+    };
+
+    template <typename Unit1, typename Unit2>
+    struct simplify<Product<Unit1, Unit2>> {
+      using type = Product<typename simplify<Unit1>::type, Unit2>;
     };
 
     template <typename Unit>
@@ -144,7 +149,7 @@ namespace Units {
       return Base::Left::abbreviation() + "⋅" + Base::Right::abbreviation();
     }
   };
-
+  
 }
 
 #endif

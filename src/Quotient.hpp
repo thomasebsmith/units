@@ -5,6 +5,7 @@
 
 namespace Units {
   template <typename Unit> class Inverse;
+  template <typename Unit, int exponent> class Power;
 
   namespace __units_private__ {
     template <typename Num, typename Unit>
@@ -27,6 +28,20 @@ namespace Units {
     }
     static std::string abbreviation() {
       return "(" + Product<Unit1, Unit2>::abbreviation() + ")⁻¹";
+    }
+  };
+  
+  template <typename Unit, int exponent>
+  class Inverse<Power<Unit, exponent>> {
+  public:
+    using Base = typename Power<Unit, -exponent>::Base;
+
+    template <typename Num>
+    static constexpr Num to_base(const Num value) {
+      return Power<Unit, -exponent>::to_base(value);
+    }
+    static std::string abbreviation() {
+      return "(" + Power<Unit, exponent>::abbreviation() + ")⁻¹";
     }
   };
 

@@ -198,6 +198,22 @@ namespace Units {
   Measurement<double, micro<volts>> operator "" _µV(long double value) {
     return Measurement { static_cast<double>(value), micro<volts>{} };
   }
+  // Electrical capacitance units:
+  Measurement<double, farads> operator "" _F(long double value) {
+    return Measurement { static_cast<double>(value), farads{} };
+  }
+  Measurement<double, mega<farads>> operator "" _MF(long double value) {
+    return Measurement { static_cast<double>(value), mega<farads>{} };
+  }
+  Measurement<double, kilo<farads>> operator "" _kF(long double value) {
+    return Measurement { static_cast<double>(value), kilo<farads>{} };
+  }
+  Measurement<double, milli<farads>> operator "" _mF(long double value) {
+    return Measurement { static_cast<double>(value), milli<farads>{} };
+  }
+  Measurement<double, micro<farads>> operator "" _µF(long double value) {
+    return Measurement { static_cast<double>(value), micro<farads>{} };
+  }
 }
 
 #endif
