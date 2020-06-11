@@ -31,6 +31,8 @@ namespace Units {
 
   using farads = typename Quotient<coulombs, volts>::Base;
 
+  using ohms = typename Quotient<volts, amperes>::Base;
+
 }
 
 #endif

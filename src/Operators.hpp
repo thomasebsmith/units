@@ -214,6 +214,22 @@ namespace Units {
   Measurement<double, micro<farads>> operator "" _µF(long double value) {
     return Measurement { static_cast<double>(value), micro<farads>{} };
   }
+  // Electrical resistance units:
+  Measurement<double, ohms> operator "" _Ω(long double value) {
+    return Measurement { static_cast<double>(value), ohms{} };
+  }
+  Measurement<double, mega<ohms>> operator "" _MΩ(long double value) {
+    return Measurement { static_cast<double>(value), mega<ohms>{} };
+  }
+  Measurement<double, kilo<ohms>> operator "" _kΩ(long double value) {
+    return Measurement { static_cast<double>(value), kilo<ohms>{} };
+  }
+  Measurement<double, milli<ohms>> operator "" _mΩ(long double value) {
+    return Measurement { static_cast<double>(value), milli<ohms>{} };
+  }
+  Measurement<double, micro<ohms>> operator "" _µΩ(long double value) {
+    return Measurement { static_cast<double>(value), micro<ohms>{} };
+  }
 }
 
 #endif
