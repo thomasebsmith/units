@@ -230,6 +230,22 @@ namespace Units {
   Measurement<double, micro<ohms>> operator "" _µΩ(long double value) {
     return Measurement { static_cast<double>(value), micro<ohms>{} };
   }
+  // Electrical conductance units:
+  Measurement<double, siemens> operator "" _S(long double value) {
+    return Measurement { static_cast<double>(value), siemens{} };
+  }
+  Measurement<double, mega<siemens>> operator "" _MS(long double value) {
+    return Measurement { static_cast<double>(value), mega<siemens>{} };
+  }
+  Measurement<double, kilo<siemens>> operator "" _kS(long double value) {
+    return Measurement { static_cast<double>(value), kilo<siemens>{} };
+  }
+  Measurement<double, milli<siemens>> operator "" _mS(long double value) {
+    return Measurement { static_cast<double>(value), milli<siemens>{} };
+  }
+  Measurement<double, micro<siemens>> operator "" _µS(long double value) {
+    return Measurement { static_cast<double>(value), micro<siemens>{} };
+  }
 }
 
 #endif

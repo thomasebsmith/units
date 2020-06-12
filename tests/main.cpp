@@ -60,5 +60,7 @@ int main() {
 
   test(close(3.0_MΩ, 0.75_kW / 0.5_A / 0.5_mA));
 
+  test(close(5.0_kS * 0.2_µV, 1.0_mA));
+
   return 0;
 }
