@@ -34,6 +34,8 @@ namespace Units {
   using ohms = typename Quotient<volts, amperes>::Base;
 
   using siemens = typename Inverse<ohms>::Base;
+
+  using webers = typename Quotient<joules, amperes>::Base;
 }
 
 #endif

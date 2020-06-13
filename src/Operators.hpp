@@ -246,6 +246,22 @@ namespace Units {
   Measurement<double, micro<siemens>> operator "" _µS(long double value) {
     return Measurement { static_cast<double>(value), micro<siemens>{} };
   }
+  // Magnetic flux units:
+  Measurement<double, webers> operator "" _Wb(long double value) {
+    return Measurement { static_cast<double>(value), webers{} };
+  }
+  Measurement<double, mega<webers>> operator "" _MWb(long double value) {
+    return Measurement { static_cast<double>(value), mega<webers>{} };
+  }
+  Measurement<double, kilo<webers>> operator "" _kWb(long double value) {
+    return Measurement { static_cast<double>(value), kilo<webers>{} };
+  }
+  Measurement<double, milli<webers>> operator "" _mWb(long double value) {
+    return Measurement { static_cast<double>(value), milli<webers>{} };
+  }
+  Measurement<double, micro<webers>> operator "" _µWb(long double value) {
+    return Measurement { static_cast<double>(value), micro<webers>{} };
+  }
 }
 
 #endif
