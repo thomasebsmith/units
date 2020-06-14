@@ -262,6 +262,22 @@ namespace Units {
   Measurement<double, micro<webers>> operator "" _µWb(long double value) {
     return Measurement { static_cast<double>(value), micro<webers>{} };
   }
+  // Magnetic induction units:
+  Measurement<double, teslas> operator "" _T(long double value) {
+    return Measurement { static_cast<double>(value), teslas{} };
+  }
+  Measurement<double, mega<teslas>> operator "" _MT(long double value) {
+    return Measurement { static_cast<double>(value), mega<teslas>{} };
+  }
+  Measurement<double, kilo<teslas>> operator "" _kT(long double value) {
+    return Measurement { static_cast<double>(value), kilo<teslas>{} };
+  }
+  Measurement<double, milli<teslas>> operator "" _mT(long double value) {
+    return Measurement { static_cast<double>(value), milli<teslas>{} };
+  }
+  Measurement<double, micro<teslas>> operator "" _µT(long double value) {
+    return Measurement { static_cast<double>(value), micro<teslas>{} };
+  }
 }
 
 #endif

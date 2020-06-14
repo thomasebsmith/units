@@ -36,6 +36,8 @@ namespace Units {
   using siemens = typename Inverse<ohms>::Base;
 
   using webers = typename Quotient<joules, amperes>::Base;
+
+  using teslas = typename Quotient<webers, Power<meters, 2>>::Base;
 }
 
 #endif

@@ -64,5 +64,7 @@ int main() {
 
   test(close(8.88_mV * 0.5_Ms, 4.44_kWb));
 
+  test(close(3.0_MA * 0.3_mm * 1.1_mT, 8800.0_T / 8.8_kT * 990.0_mN));
+
   return 0;
 }
