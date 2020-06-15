@@ -38,6 +38,8 @@ namespace Units {
   using webers = typename Quotient<joules, amperes>::Base;
 
   using teslas = typename Quotient<webers, Power<meters, 2>>::Base;
+
+  using henries = typename Product<ohms, seconds>::Base;
 }
 
 #endif

@@ -278,6 +278,22 @@ namespace Units {
   Measurement<double, micro<teslas>> operator "" _µT(long double value) {
     return Measurement { static_cast<double>(value), micro<teslas>{} };
   }
+  // Electrical inductance units:
+  Measurement<double, henries> operator "" _H(long double value) {
+    return Measurement { static_cast<double>(value), henries{} };
+  }
+  Measurement<double, mega<henries>> operator "" _MH(long double value) {
+    return Measurement { static_cast<double>(value), mega<henries>{} };
+  }
+  Measurement<double, kilo<henries>> operator "" _kH(long double value) {
+    return Measurement { static_cast<double>(value), kilo<henries>{} };
+  }
+  Measurement<double, milli<henries>> operator "" _mH(long double value) {
+    return Measurement { static_cast<double>(value), milli<henries>{} };
+  }
+  Measurement<double, micro<henries>> operator "" _µH(long double value) {
+    return Measurement { static_cast<double>(value), micro<henries>{} };
+  }
 }
 
 #endif
