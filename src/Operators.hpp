@@ -294,6 +294,22 @@ namespace Units {
   Measurement<double, micro<henries>> operator "" _µH(long double value) {
     return Measurement { static_cast<double>(value), micro<henries>{} };
   }
+  // Illuminance units:
+  Measurement<double, lux> operator "" _lx(long double value) {
+    return Measurement { static_cast<double>(value), lux{} };
+  }
+  Measurement<double, mega<lux>> operator "" _Mlx(long double value) {
+    return Measurement { static_cast<double>(value), mega<lux>{} };
+  }
+  Measurement<double, kilo<lux>> operator "" _klx(long double value) {
+    return Measurement { static_cast<double>(value), kilo<lux>{} };
+  }
+  Measurement<double, milli<lux>> operator "" _mlx(long double value) {
+    return Measurement { static_cast<double>(value), milli<lux>{} };
+  }
+  Measurement<double, micro<lux>> operator "" _µlx(long double value) {
+    return Measurement { static_cast<double>(value), micro<lux>{} };
+  }
 }
 
 #endif

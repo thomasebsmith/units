@@ -40,6 +40,8 @@ namespace Units {
   using teslas = typename Quotient<webers, Power<meters, 2>>::Base;
 
   using henries = typename Product<ohms, seconds>::Base;
+
+  using lux = typename Quotient<candelas, Power<meters, 2>>::Base;
 }
 
 #endif
