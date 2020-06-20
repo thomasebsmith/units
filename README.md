@@ -6,12 +6,13 @@ compile time.
 - Unit simplification
 - Addition and subtraction
 - Multiplication and division
+- Integer exponentiation
 - Floating point number format flexibility
 - Support for almost all SI base and derived units.
 - Literal suffixes that can be used for cleaner syntax.
 
 ## Quick Start
 ```sh
-$ make test
+$ make
 $ ./test
 ```
