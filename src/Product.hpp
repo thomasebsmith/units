@@ -11,6 +11,8 @@ namespace Units {
 
   template <typename Unit1, typename Unit2> class Product;
 
+  // Semi-private namespace that contains utilities used for compile-time
+  // multiplication.
   namespace __units_private__ {
     template <typename Unit> struct minID;
     template <typename Unit> struct maxID;
@@ -28,6 +30,8 @@ namespace Units {
       return value < 0 ? -value : value;
     }
 
+    // Determines whether leftID could come before rightID in a sorted list of
+    // units.
     constexpr bool sorted(const int leftID, const int rightID) {
       if (abs(leftID) > abs(rightID)) {
         return false;
@@ -38,14 +42,17 @@ namespace Units {
       return leftID > rightID; // Inverses come second
     }
 
+    // Determines the lesser of the two unit IDs.
     constexpr int absMin(const int left, const int right) {
       return sorted(left, right) ? left : right;
     }
 
+    // Determines the greater of the two unit IDs.
     constexpr int absMax(const int left, const int right) {
       return sorted(left, right) ? right : left;
     }
 
+    // Determines the minimum ID within a product of units.
     template <typename Unit1, typename Unit2>
     struct minID<Product<Unit1, Unit2>> {
       static constexpr int value = absMin(
@@ -58,6 +65,7 @@ namespace Units {
       static constexpr int value = Unit::_id;
     };
 
+    // Determines the maximum ID within a product of units.
     template <typename Unit1, typename Unit2>
     struct maxID<Product<Unit1, Unit2>> {
       static constexpr int value = absMax(
@@ -70,6 +78,7 @@ namespace Units {
       static constexpr int value = Unit::_id;
     };
 
+    // Determines whether a product is fully simplified.
     template <typename Unit1, typename Unit2>
     struct is_simple<Product<Product<Unit1, Unit2>, Inverse<Unit2>>> {
       static constexpr bool value = false;
@@ -91,6 +100,7 @@ namespace Units {
     };
 
 
+    // Creates a sorted product of units based on two existing products.
     // Worst case: both units are products.
     template <typename Unit1, typename Unit2, typename Unit3, typename Unit4>
     struct merge<Product<Unit1, Unit2>, Product<Unit3, Unit4>> {
@@ -131,6 +141,7 @@ namespace Units {
       >;
     };
 
+    // Removes unnecessary inverses from a list of products.
     template <typename Unit1, typename Unit2>
     struct simplify<Product<Product<Unit1, Unit2>, Inverse<Unit2>>> {
       using type = typename simplify<Unit1>::type;
@@ -146,6 +157,8 @@ namespace Units {
       using type = Unit;
     };
 
+    // Used to allow the compiler to not blow up with too much template
+    // recursion.
     template <typename Unit1, typename Unit2>
     struct delayed_product {
       using type = Product<Unit1, Unit2>;
@@ -167,6 +180,8 @@ namespace Units {
     };
   }
 
+  // Recursively calculate the base unit by determining the ordered sequences
+  // of products for Unit1 and Unit2 and then combining them.
   template <typename Unit1, typename Unit2>
   class Product {
   public:
