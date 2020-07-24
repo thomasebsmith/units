@@ -4,6 +4,7 @@
 using namespace Units;
 
 int main() {
+  // Meters, addition, subtraction.
   Measurement length1 { 5.0, meters{} };
   Measurement length2 { 0.8, kilo<meters>{} };
   test(close(length1 + length2, Measurement { 805.0, meters{} }));
@@ -11,6 +12,8 @@ int main() {
     -0.795,
     kilo<meters>{}
   }));
+
+  // Seconds, addition, multiplication, division.
   Measurement time1 { 0.33, milli<seconds>{} };
   Measurement time2 { 50.0, micro<seconds>{} };
   test(close(time1 + time2, Measurement { 0.38, milli<seconds>{} }));
@@ -32,15 +35,18 @@ int main() {
 
   test(close(503.0_µm * 2.0_Ms, 251.5_µs * 4.0_Mm));
 
+  // Kilograms, newtons, exponentiation.
   test(close(3.5389_kg, 3538.9_g));
 
   test(close(1.0_N, 1.0_m * 1000.0_g / (1.0_s).pow<2>()));
   test(!close(1.0_N, 1.1_m * 0.9_kg / 1.0_s / 1.0_s));
 
+  // Amperes, kelvin, candela.
   test(close(0.053_MA, 53.0_kA));
   test(close(273.15_K, 273150.0_mK));
   test(close(8080.8_µcd, 8.0808_mcd));
 
+  // Pascals, joules, watts.
   test(close(3.14159_Pa, 18.84954_N / 3.0_m / 2.0_m));
 
   auto sqrt_333_m = 1.824828759089466_m;
@@ -49,6 +55,7 @@ int main() {
   test(close(8.1_kg * 4.4_m * 2.2_m / 3.14_s, 2.0_J * 12.485350318471338_s));
   test(close(5.666_J / 2.0_s, 2.833_W));
 
+  // Coulombs, volts, webers.
   test(close(80.0_mC, 0.0004_kA * 0.2_s));
 
   test(close(0.03_µJ / 0.003_mC, 0.00001_kV));
@@ -64,6 +71,7 @@ int main() {
 
   test(close(8.88_mV * 0.5_Ms, 4.44_kWb));
 
+  // Teslas, henries, lux.
   test(close(3.0_MA * 0.3_mm * 1.1_mT, 8800.0_T / 8.8_kT * 990.0_mN));
 
   test(close(3.0_kWb / 3.0_µA, 1000.0_MH));
